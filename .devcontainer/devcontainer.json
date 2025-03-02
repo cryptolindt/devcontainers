@@ -4,18 +4,25 @@
 		"vscode": {
 			"extensions": [
 				"ms-azuretools.vscode-azurecli",
+				//"ms-vscode.azurecli"
 				"ms-azuretools.vscode-bicep"
 			]
 		},
 		"settings": {}
 	},
 	"features": {
-		"rchaganti/vsc-devcontainer-features/azurebicep" : {
-			"version": "latest"
-		},
-		"azure-cli": {
-			"version": "latest"
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"installBicep": true,
+			"version": "latest",
+			"bicepVersion": "latest"
 		}
+		// "rchaganti/vsc-devcontainer-features/azurebicep": {
+		// 	"version": "latest"
+		// },
+		// "azure-cli": {
+		// 	"version": "latest"
+		// }
 	},
 	"remoteUser": "vscode"
 }
