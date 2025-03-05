@@ -1,60 +1,51 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
 {
-	"image": "mcr.microsoft.com/vscode/devcontainers/base",	
+	"name": "Azure Dev",
+
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": { 
+			"VARIANT": "bullseye"
+		}
+	},
+	// Configure tool-specific properties.
 	"customizations": {
+		"settings": {},
 		"vscode": {
 			"extensions": [
 				"ms-azuretools.vscode-azurecli",
-				//"ms-vscode.azurecli"
-				"ms-azuretools.vscode-bicep"
+				"ms-azuretools.vscode-bicep",
+				"GitHub.vscode-pull-request-github"
 			]
-		},
-		"settings": {}
+		}
 	},
+
+ 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
-		"ghcr.io/devcontainers/features/azure-cli:1": {
+		"./common-utils": {
+			"configureZshAsDefaultShell": false
+		},
+		"./github-cli": {},
+		// https://github.com/devcontainers/features/tree/main/src/azure-cli
+		"./azure-cli": {
 			"installBicep": true,
 			"version": "latest",
 			"bicepVersion": "latest"
-		}
-		// "rchaganti/vsc-devcontainer-features/azurebicep": {
-		// 	"version": "latest"
-		// },
-		// "azure-cli": {
-		// 	"version": "latest"
-		// }
+		},
+		// The host and the container must be running on the same chip architecture. 
+		// You will not be able to use it with an emulated x86 image with Docker Desktop on an Apple Silicon Mac
+		// https://github.com/devcontainers/features/tree/main/src/docker-in-docker
+		"./docker-in-docker": {}
 	},
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 	"remoteUser": "vscode"
 }
-
-// // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
-// {
-// 	"name": "Ubuntu",
-// 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-// 	"image": "mcr.microsoft.com/devcontainers/base:jammy",
-	
-// 	"features": {
-// 		"ghcr.io/devcontainers/features/azure-cli:1": {
-// 			"installBicep": true,
-// 			"version": "latest",
-// 			"bicepVersion": "latest",
-// 			"extensions": [ "ms-azuretools.vscode-azurecli","ms-azuretools.vscode-bicep" ]
-// 		}
-// 	}
-
-// 	// Features to add to the dev container. More info: https://containers.dev/features.
-// 	// "features": {},
-
-// 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-// 	// "forwardPorts": [],
-
-// 	// Use 'postCreateCommand' to run commands after the container is created.
-// 	// "postCreateCommand": "uname -a",
-
-// 	// Configure tool-specific properties.
-// 	// "customizations": {},
-
-// 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-// 	// "remoteUser": "root"
-// }
